@@ -4,14 +4,18 @@ RUN apk add --update nodejs npm
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
 
-RUN npm install
-
+RUN npm ci
 
 RUN mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
 
+COPY . .
+
+RUN npm run build
 
 COPY . .
 
-CMD ["npm", "run", "build"]
+
+CMD ["npm", "run", "prod"]

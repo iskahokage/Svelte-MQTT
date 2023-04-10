@@ -9,6 +9,7 @@ services:
     volumes:
       - ./client:/app
       - /app/node_modules
+      - /app/build
     ports:
       - 3000:3000
     command: npm run prod
@@ -25,6 +26,8 @@ services:
       - 8000:8000
     command: npm run dev
     restart: always
+volumes:
+  client-build:
 networks: 
   default:
      name: svelte
